@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ground
   - groundCheck
+  - hitbox
   layers:
   - Default
   - TransparentFX

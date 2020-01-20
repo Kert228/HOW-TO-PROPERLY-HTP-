@@ -20,9 +20,7 @@ public class playerWalking : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
 
-        sprRend = gameObject.GetComponent<SpriteRenderer>();
-
-        animator = gameObject.GetComponent<Animator>();
+        sprRend = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
@@ -33,9 +31,18 @@ public class playerWalking : MonoBehaviour
 
         if (moveInput > 0f)
         {
-            sprRend.flipX = false;
+            gameObject.transform.localScale = new Vector2 ( 1, gameObject.transform.localScale.y );
         }else if (moveInput < 0f){
-            sprRend.flipX = true;
+            gameObject.transform.localScale = new Vector2 ( -1, gameObject.transform.localScale.y );
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            animator.SetTrigger("lightattack");
+        }
+        if (Input.GetKeyDown(KeyCode.X) && grounded == true)
+        {
+            animator.SetTrigger("strongattack");
         }
 
         if (moveInput != 0)
